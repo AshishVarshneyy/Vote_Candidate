@@ -12,16 +12,13 @@ def action(username_entry, url_entry):
         options = webdriver.ChromeOptions()
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--ignore-ssl-errors')
-         
         driver = webdriver.Chrome(options=options)
+        driver.implicitly_wait(10)
         driver.get(url)
-        try:
-            namebox = driver.find_element_by_id("v")
-            namebox.send_keys(username)
-            submit = driver.find_element_by_id("vote_btn")
-            submit.click()
-        except Exception as error:
-            logging.error(error)
-        time.sleep(60)
+        namebox = driver.find_element_by_id("v")
+        namebox.send_keys(username)
+        submit = driver.find_element_by_id("vote_btn")
+        submit.click()
+        time.sleep(30)
         driver.quit()
         time.sleep(1800)
